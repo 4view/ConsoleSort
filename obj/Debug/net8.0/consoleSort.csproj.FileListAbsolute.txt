@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\consoleSort\bin\Debug\net8.0\consoleSort.exe
+C:\Users\User\Desktop\consoleSort\bin\Debug\net8.0\consoleSort.deps.json
+C:\Users\User\Desktop\consoleSort\bin\Debug\net8.0\consoleSort.runtimeconfig.json
+C:\Users\User\Desktop\consoleSort\bin\Debug\net8.0\consoleSort.dll
+C:\Users\User\Desktop\consoleSort\bin\Debug\net8.0\consoleSort.pdb
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.AssemblyInfo.cs
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.dll
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\refint\consoleSort.dll
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.pdb
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.genruntimeconfig.cache
+C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\ref\consoleSort.dll
