@@ -12,3 +12,4 @@ C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\refint\consoleSort.dll
 C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.pdb
 C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.genruntimeconfig.cache
 C:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\ref\consoleSort.dll
+c:\Users\User\Desktop\consoleSort\obj\Debug\net8.0\consoleSort.sourcelink.json

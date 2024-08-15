@@ -19,15 +19,21 @@ using System.Dynamic;
 using System.Net.WebSockets;
 
 class Program
+
 {
     static void Main(string[] args)
     {       
         Console.WriteLine("ConsoleSort \nEnter a path to your file: ");
         string? filePath = Console.ReadLine();
+        //Кароче я создал метод в EmployeeFactory WriteEmployees, для записи отсортированных работников, дальше я прономерую вопросы...
+        //1. Можно ли/ правильно ли создавать этот метод в этом классе или лучше создать отдельный класс 
+        //2. Если все таки можно так делать, я создаю новый экземпляр класса emplWrite а потом уже в нужном кейсе юзаю метод, правильно ли это или нужно создавать каждому кейсу объект, хотя звучит как бред
+        //3. Ну и если где-то совсем корявые названия напиши где, я пытался нормальные делать. И ваще чиркани где ошибки
 
         var fileReader = new FileReader();
         var lines = fileReader.ReadText(filePath);
 
+        EmployeeFactory emplWrite = new EmployeeFactory();
         EmployeeFactory emplFactory = new EmployeeFactory();
         var employees = emplFactory.CreateEmployees(lines);
 
@@ -47,19 +53,14 @@ class Program
                         Console.WriteLine("Enter the name of sort: ");
                         string? userName = Console.ReadLine();                                              
 
-                        var selectedEmploeeys = employees.Where(e => e.Name == userName); 
-
-                        List<string> outContent = new List<string>();
-
-                        foreach (Employee empl in selectedEmploeeys)
-                        {
-                            outContent.Add(empl.ToString());
-                        }
+                        var selectedEmploeeys = employees.Where(e => e.Name == userName);
+                        
+                        var writeEmployees = emplWrite.WriteEmployees(selectedEmploeeys.ToList());
 
                         Console.WriteLine("Enter a path where you want to save sort file: ");  
                         string? outFile = Console.ReadLine();
 
-                        File.WriteAllLines(outFile, outContent);
+                        File.WriteAllLines(outFile, writeEmployees);
                         Console.WriteLine("Sort is successfully done!");
                         break;
                     }
@@ -70,17 +71,12 @@ class Program
 
                         var selectedEmploeeys = employees.Where(e => e.SecondName == userSecondName);
 
-                        List<string> outContent = new List<string>();
-
-                        foreach(Employee empl in selectedEmploeeys)
-                        {
-                            outContent.Add(empl.ToString());
-                        }
+                        var writeEmployees = emplWrite.WriteEmployees(selectedEmploeeys.ToList());
                         
                         Console.WriteLine("Enter a path where you want to save sort file: ");
                         string? outFile = Console.ReadLine();
 
-                        File.WriteAllLines(outFile, outContent);
+                        File.WriteAllLines(outFile, writeEmployees);
                         Console.WriteLine("Sort is successfully done!");
                         break;
                     }
