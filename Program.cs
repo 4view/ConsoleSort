@@ -23,26 +23,34 @@ class Program
 {
     static void Main(string[] args)
     {       
-        Console.WriteLine("ConsoleSort \nEnter a path to your file: ");
-        string? filePath = Console.ReadLine();
-        //Кароче я создал метод в EmployeeFactory WriteEmployees, для записи отсортированных работников, дальше я прономерую вопросы...
-        //1. Можно ли/ правильно ли создавать этот метод в этом классе или лучше создать отдельный класс 
-        //2. Если все таки можно так делать, я создаю новый экземпляр класса emplWrite а потом уже в нужном кейсе юзаю метод, правильно ли это или нужно создавать каждому кейсу объект, хотя звучит как бред
-        //3. Ну и если где-то совсем корявые названия напиши где, я пытался нормальные делать. И ваще чиркани где ошибки
+        //Console.WriteLine("ConsoleSort \nEnter a path to your file: ");
+        string filePath = @"E:\temp\test\mytest.txt";
 
         var fileReader = new FileReader();
         var lines = fileReader.ReadText(filePath);
 
-        EmployeeFactory emplWrite = new EmployeeFactory();
+        FileWriter emplWrite = new FileWriter();
         EmployeeFactory emplFactory = new EmployeeFactory();
         var employees = emplFactory.CreateEmployees(lines);
 
-        Console.WriteLine("Choose a variation of the sort: \n1.FIO \n2.Age \n3.Language \n4.Position \n5.Test sort");
-        int userChoice = Convert.ToInt32(Console.ReadLine());       
-                
+        Console.WriteLine("Enter a path where you want to save sort file: ");
+        string resultFilePath = Console.ReadLine();
+        SortBy? userChoice = null;// Перечисление выбора сортировки       
+
+        try
+        {
+            Console.WriteLine("Choose a variation of the sort: \n1.FIO \n2.Age \n3.Language \n4.Position");
+            userChoice = (SortBy)Convert.ToInt32(Console.ReadLine());
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Enter correct variation!\n", e.Message);
+            return;
+        }       
+
         switch (userChoice)
         {
-            case 1:
+            case SortBy.FIO:
             {
                 Console.WriteLine("Choose a variation: \n1.Name \n2.SecondNamde \n3.TherdName");
                 int innerChoice = Convert.ToInt32(Console.ReadLine());
@@ -51,143 +59,82 @@ class Program
                     case 1:
                     {                       
                         Console.WriteLine("Enter the name of sort: ");
-                        string? userName = Console.ReadLine();                                              
+                        string userName = Console.ReadLine();         
 
-                        var selectedEmploeeys = employees.Where(e => e.Name == userName);
-                        
-                        var writeEmployees = emplWrite.WriteEmployees(selectedEmploeeys.ToList());
-
-                        Console.WriteLine("Enter a path where you want to save sort file: ");  
-                        string? outFile = Console.ReadLine();
-
-                        File.WriteAllLines(outFile, writeEmployees);
+                        NameEmployeeSorter SNempl = new NameEmployeeSorter();
+                        var selectedEmploeeys = SNempl.Sort(employees, userName);
+                    
+                        emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys);
                         Console.WriteLine("Sort is successfully done!");
                         break;
                     }
                     case 2: 
                     {
                         Console.WriteLine("Enter a secondName of sort: ");
-                        string? userSecondName = Console.ReadLine();
+                        string userSecondName = Console.ReadLine();
 
                         var selectedEmploeeys = employees.Where(e => e.SecondName == userSecondName);
 
-                        var writeEmployees = emplWrite.WriteEmployees(selectedEmploeeys.ToList());
-                        
-                        Console.WriteLine("Enter a path where you want to save sort file: ");
-                        string? outFile = Console.ReadLine();
-
-                        File.WriteAllLines(outFile, writeEmployees);
+                        emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys.ToList());                        
                         Console.WriteLine("Sort is successfully done!");
                         break;
                     }
                     case 3: 
                     {
                         Console.WriteLine("Enter a therdname of sort: ");
-                        string? userThirdName = Console.ReadLine();
+                        string userThirdName = Console.ReadLine();
 
-                        var selectedEmploeeys = employees.Where(e => e.ThirdName == userThirdName);
+                        var selectedEmploeeys = employees.Where(e => e.ThirdName == userThirdName);  
 
-                        List<string> outContent = new List<string>();
-
-                        foreach (Employee empl in selectedEmploeeys)
-                        {
-                            outContent.Add(empl.ToString());
-                        }
-
-                        Console.WriteLine("Enter a path where you want to save sort file: ");
-                        string? outFile = Console.ReadLine();
-
-                        File.WriteAllLines(outFile, outContent);
+                        emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys.ToList());
                         Console.WriteLine("Sort is successfuly done!");
                         break;
                     }
                 }
-                break;
-            }
-            case 2:
+                    break;
+                }
+            case SortBy.Age:
             {
                 Console.WriteLine("Enter an age of emploeeyr:");
                 int userAge = Convert.ToInt32(Console.ReadLine());
 
                 var selectedEmploeeys = employees.Where(e => e.Age == userAge);
 
-                List<string> outContent = new List<string>();
-
-                foreach (Employee empl in selectedEmploeeys)
-                {
-                    outContent.Add(empl.ToString());
-                }
-
-                Console.WriteLine("Enter a path to save file: ");
-                string? outFile = Console.ReadLine();
-
-                File.WriteAllLines(outFile, outContent);
+                emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys.ToList());
                 Console.WriteLine("Sort was successfuly done!");
                 break;
             }
-            case 3:
+            case SortBy.Language:
             {
                 Console.WriteLine("Enter a language: ");
-                string? userLanguage = Console.ReadLine();
+                string userLanguage = Console.ReadLine();
 
                 var selectedEmploeeys = employees.Where(e => e.Language.Contains(userLanguage));
 
-                List<string> outContent = new List<string>();
-
-                foreach (Employee empl in selectedEmploeeys)
-                {
-                    outContent.Add(empl.ToString());
-                }
-
-                Console.WriteLine("Enter a path to save file: ");
-                string? outFile = Console.ReadLine();
-                
-                File.WriteAllLines(outFile, outContent);
+                emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys.ToList());
                 Console.WriteLine("Sort was successfuly done!");
-
                 break;
             }
-            case 4:
+            case SortBy.Position:
             {
                 Console.WriteLine("Enter a position: ");
-                string? userPosition = Console.ReadLine();
+                string userPosition = Console.ReadLine();
 
                 var selectedEmploeeys = employees.Where(e => e.Position == userPosition);
 
-                List<string> outContetnt = new List<string>();
-
-                foreach (Employee empl in selectedEmploeeys)
-                {
-                    outContetnt.Add(empl.ToString());
-                }
-
-                Console.WriteLine("Enter a path to save file: ");
-                string? outFile = Console.ReadLine();
-
-                File.WriteAllLines(outFile, outContetnt);
+                emplWrite.WriteEmployees(resultFilePath, selectedEmploeeys.ToList());
                 Console.WriteLine("Sort was successfuly done!");
-
                 break;
             }
-            case 5:
-            {
-                string outFile = @"E:\temp\test\sort.txt";             
+        } 
+    }
 
-                List<string> outContent = new List<string>();//Коллекция для выводы отсортированного содержимого 
-
-                foreach (Employee empl in employees)
-                {
-                    outContent.Add(empl.ToString());
-                    //Console.WriteLine(empl);
-                }                
-
-                File.WriteAllLines(outFile, outContent);
-                Console.WriteLine("Sort is successfully done!");
-                break;
-            }
-        }      
-
-        
+    public enum SortBy
+    {
+        FIO = 1,
+        Age = 2,
+        Language = 3,
+        Position = 4,
     }
 }
 

@@ -12,15 +12,4 @@ class EmployeeFactory
         }
         return employees;
     }
-
-    public List<string> WriteEmployees(List<Employee> employees)
-    {
-        List<string> outContent = new List<string>();
-
-        foreach (Employee empl in employees)
-        {
-            outContent.Add(empl.ToString());
-        }       
-        return outContent;
-    }
 }
