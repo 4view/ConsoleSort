@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\consoleSort\\consoleSort.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\sharp\\consoleSort\\consoleSort.csproj",
       "projectName": "consoleSort",
-      "projectPath": "C:\\Users\\User\\Desktop\\consoleSort\\consoleSort.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\sharp\\consoleSort\\consoleSort.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\consoleSort\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\sharp\\consoleSort\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"

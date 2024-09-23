@@ -1,3 +1,7 @@
+using ConsoleSort.Model;
+
+namespace ConsoleSort.Storage;
+
 class FileWriter
 {
     public void WriteEmployees(string path, List<Employee> employees)

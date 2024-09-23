@@ -1,3 +1,5 @@
+namespace ConsoleSort.Model;
+
 class EmployeeFactory
 {
     public List<Employee> CreateEmployees(List<string> lines)

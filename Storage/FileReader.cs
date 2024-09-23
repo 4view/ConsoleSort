@@ -1,3 +1,5 @@
+namespace ConsoleSort.Storage;
+
 class FileReader 
 {    
     public List<string> ReadText(string path)
